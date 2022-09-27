@@ -1,0 +1,35 @@
+{
+  "name": "web-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "compile": "npx babel --watch src --out-dir . --presets react-app/prod",
+    "build": "webpack  --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "author": "vrdo",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.19.1",
+    "@reduxjs/toolkit": "^1.8.5",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.2.5",
+    "babel-preset-react-app": "^3.1.2",
+    "express": "^4.18.1",
+    "http": "0.0.1-security",
+    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.18.6",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

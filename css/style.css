@@ -1,0 +1,268 @@
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+mark {
+    background: none;
+}
+
+html button:hover {
+    background-color: black;
+    color: rgb(219, 219, 219);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    color: #242424;
+}
+
+
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+#root {
+    overflow: hidden;
+}
+
+
+/* Section 3 */
+
+.tabbarr {
+    padding: 45px 150px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.tabbutton {
+    padding: 20px 50px;
+    border: 1px solid #dddddd;
+    background: #fff;
+    border-right: none;
+
+}
+
+.tabbutton-active {
+    background-color: #ffe10a;
+    padding: 20px 50px;
+    border: 1px solid #dddddd;
+    border-right: none;
+}
+
+.tabbutton:first-child,
+.tabbutton-active:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.tabbutton:last-child,
+.tabbutton-active:last-child {
+    border-radius: 0 5px 5px 0;
+    border-right: 1px solid #ddd;
+}
+
+.tabbackground{
+    height: 222px;
+    background: url(../img/background.png);
+    position: relative;
+    bottom: 180px;
+    z-index: -2;
+}
+
+.tabcontent{
+    display: flex;
+    justify-content: space-evenly;
+}
+.slide {
+    width: 352px;
+    height: 345px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    background: #fff;
+}
+
+.slide-start{
+    transform: translateX(-300%)
+}
+
+.slide-end{
+    transform: translateX(300%)
+}
+
+/* Animations */
+
+.slide_animation-left-slide{
+    animation-name: slide_animation-left-slide;
+    animation-duration: 0.5s;
+}
+
+.slide_animation-right-slide{
+    animation-name: slide_animation-right-slide;
+    animation-duration: 0.5s;
+}
+
+.slide_animation-right-down{
+    animation: slide_animation-right-down;
+    animation-duration: 0.5s;
+}
+
+.slide_animation-left-down {
+    animation: slide_animation-left-down ;
+    animation-duration: 0.5s;
+}
+
+/*  */
+
+.slide img{
+    border-radius: 10px 10px 0 0;
+}
+
+.slide h3 {
+    font-size: 30px;
+    margin-top: 50px;
+    padding-left: 10px;
+}
+
+.slide a{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.slide a:hover{
+    text-decoration: underline;
+}
+
+.slider-dots{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.slider-dot{
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border: none;
+    margin: 0 9px;
+    border-radius: 50%;
+}
+
+.slider-dot-active,
+.slider-dot-active:hover{
+    width: 12px;
+    height: 12px;
+    background-color: #6f97a8;
+    border: none;
+    margin: 0 9px;
+    border-radius: 50%;
+}
+
+.slider-dot:hover{
+    background: #fff;
+}
+
+/* Section 4 */
+
+
+
+
+
+/* Main */
+
+
+
+@keyframes slide_animation-left-slide{
+    0% {transform: translate(0,0);}
+
+    50% {
+        transform: translateX(-135.5%);
+    }
+    51% {
+        transform: translateX(542%);
+    }
+    100% {
+        transform: translateX(271%)
+    }
+}
+
+@keyframes slide_animation-right-slide{
+    0% {transform: translate(0,0);}
+
+    50% {
+        transform: translateX(135.5%);
+    }
+    51% {
+        transform: translateX(-542%);
+    }
+    100% {
+        transform: translateX(-271%)
+    }
+}
+
+
+@keyframes slide_animation-right-down {
+    0% {transform: translate(0,0);}
+
+    50% {
+        transform: translate(67%,300%);
+        z-index: -1;
+    }
+
+    100% {
+        transform: translate(135%,0);
+        z-index: 0;
+    }
+}
+
+@keyframes slide_animation-left-down {
+    0% {transform: translate(0,0);}
+
+    50% {
+        transform: translate(-67%,300%);
+        z-index: -1;
+    }
+
+    100% {
+        transform: translate(-135%,0);
+        z-index: 0;
+    }
+}
