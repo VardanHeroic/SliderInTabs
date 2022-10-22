@@ -1,36 +1,48 @@
 import { sliderData } from "../../data.js"
 import { connect } from "react-redux"
-import { setValue,setPrevValue,setNextValue,setActiveValueRight,setActiveValueLeft } from "../../store/sliderSlice.js"
+import { setValue,setPrevValue,setNextValue, } from "../../store/sliderSlice.js"
 import React from "react"
 import { setClass, setFrontClass, setEndClass } from "../../store/slider-animationSlice.js"
 
 class Dots extends React.Component {
-    changeSlide(e){
-        if(e.target.id > this.props.sliderActive.sliderActive){
+    changeSlide(e,sign){
+        if(this.props.sliderActive.sliderActive - e.target.id < 0){
             this.props.setFrontClass('slide_animation-left-slide')
             this.props.setClass('slide_animation-left-down ')
             this.props.setEndClass('slide_animation-left-down ')
+            console.log('lox');
             setTimeout(() => {
-                this.props.setPrevValue([e.target.id , sliderData[this.props.tabActive.tabActive].length ])
-                this.props.setActiveValueRight([e.target.id , sliderData[this.props.tabActive.tabActive].length ])
+                this.props.setPrevValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive].length ])
             },250)
         }
-
-        else if(e.target.id < this.props.sliderActive.sliderActive){
+    
+        else if(this.props.sliderActive.sliderActive - e.target.id > 0){
             this.props.setFrontClass('slide_animation-right-down')
             this.props.setClass('slide_animation-right-down')
             this.props.setEndClass('slide_animation-right-slide ')
+            console.log('lox');
             setTimeout(() => {
-                this.props.setNextValue([e.target.id , sliderData[this.props.tabActive.tabActive ].length])
-                this.props.setActiveValueLeft([e.target.id , sliderData[this.props.tabActive.tabActive].length ])
-            },250)
+                this.props.setNextValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive ].length])
+            },250)     
         }
-        
-        setTimeout(() => {
+            
+        let nuller = setTimeout(() => {
             this.props.setClass('')
             this.props.setFrontClass('')
             this.props.setEndClass('')
+            this.props.dotClick([sign , sliderData[this.props.tabActive.tabActive].length]);
+            clearTimeout(nuller)
         }, 500); 
+    }
+
+    changeLogic(){
+        if(this.props.sliderActive.sliderActive != Number(e.target.id)){
+            this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
+        }
+        else{
+            console.log('end')
+            clearInterval(sliderInterval)
+        }
     }
 
     render(){
@@ -43,10 +55,22 @@ class Dots extends React.Component {
                             id={i} 
                             key={i.toString()} 
                             onClick={(e) => {
-                                this.changeSlide(e)
-                                setTimeout(() =>{
-                                    this.props.dotClick([e.target.id , sliderData[this.props.tabActive.tabActive].length]);
-                                },500)
+                                if(this.props.sliderActive.sliderActive != Number(e.target.id)){
+                                        this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
+                                }
+                                else{
+                                    console.log('end')
+                                    clearInterval(sliderInterval)
+                                }
+                                let sliderInterval = setInterval((e) =>{
+                                    if(this.props.sliderActive.sliderActive != Number(e.target.id)){
+                                        this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
+                                    }
+                                    else{
+                                        console.log('end')
+                                        clearInterval(sliderInterval)
+                                    }
+                                },600,e)
                             }}
                             className={this.props.sliderActive.sliderActive == i ? 'slider-dot-active' : 'slider-dot' } >
                         </button>
@@ -70,12 +94,6 @@ export default connect(
 
         setPrevValue: (value) =>{
             dispatch(setPrevValue(value))
-        },
-        setActiveValueLeft: (value) => {
-            dispatch(setActiveValueLeft(value))
-        },
-        setActiveValueRight: (value) => {
-            dispatch(setActiveValueRight(value))
         },
         setNextValue: (value) =>{
             dispatch(setNextValue(value))

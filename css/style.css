@@ -1,12 +1,3 @@
-ul[class],
-ol[class] {
-    padding: 0;
-}
-
-mark {
-    background: none;
-}
-
 html button:hover {
     background-color: black;
     color: rgb(219, 219, 219);
@@ -38,12 +29,6 @@ body {
     color: #242424;
 }
 
-
-ul[class],
-ol[class] {
-    list-style: none;
-}
-
 a:not([class]) {
     text-decoration-skip-ink: auto;
 }
@@ -65,7 +50,6 @@ select {
 }
 
 
-/* Section 3 */
 
 .tabbarr {
     padding: 45px 150px;
@@ -129,30 +113,6 @@ select {
     transform: translateX(300%)
 }
 
-/* Animations */
-
-.slide_animation-left-slide{
-    animation-name: slide_animation-left-slide;
-    animation-duration: 0.5s;
-}
-
-.slide_animation-right-slide{
-    animation-name: slide_animation-right-slide;
-    animation-duration: 0.5s;
-}
-
-.slide_animation-right-down{
-    animation: slide_animation-right-down;
-    animation-duration: 0.5s;
-}
-
-.slide_animation-left-down {
-    animation: slide_animation-left-down ;
-    animation-duration: 0.5s;
-}
-
-/*  */
-
 .slide img{
     border-radius: 10px 10px 0 0;
 }
@@ -200,15 +160,29 @@ select {
     background: #fff;
 }
 
-/* Section 4 */
 
 
+/* Animations */
 
+.slide_animation-left-slide{
+    animation-name: slide_animation-left-slide;
+    animation-duration: 0.5s;
+}
 
+.slide_animation-right-slide{
+    animation-name: slide_animation-right-slide;
+    animation-duration: 0.5s;
+}
 
-/* Main */
+.slide_animation-right-down{
+    animation: slide_animation-right-down;
+    animation-duration: 0.5s;
+}
 
-
+.slide_animation-left-down {
+    animation: slide_animation-left-down ;
+    animation-duration: 0.5s;
+}
 
 @keyframes slide_animation-left-slide{
     0% {transform: translate(0,0);}
@@ -220,7 +194,7 @@ select {
         transform: translateX(542%);
     }
     100% {
-        transform: translateX(271%)
+        transform: translateX(275%)
     }
 }
 
@@ -234,7 +208,7 @@ select {
         transform: translateX(-542%);
     }
     100% {
-        transform: translateX(-271%)
+        transform: translateX(-275%)
     }
 }
 
@@ -242,27 +216,16 @@ select {
 @keyframes slide_animation-right-down {
     0% {transform: translate(0,0);}
 
-    50% {
-        transform: translate(67%,300%);
-        z-index: -1;
-    }
-
     100% {
-        transform: translate(135%,0);
-        z-index: 0;
+        transform: translate(137.7%,0);
     }
 }
 
 @keyframes slide_animation-left-down {
     0% {transform: translate(0,0);}
 
-    50% {
-        transform: translate(-67%,300%);
-        z-index: -1;
-    }
-
     100% {
-        transform: translate(-135%,0);
-        z-index: 0;
+        transform: translate(-137.7%,0);
+
     }
 }

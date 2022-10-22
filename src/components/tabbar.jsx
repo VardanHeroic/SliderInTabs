@@ -25,7 +25,7 @@ class Tabbar extends React.Component{
                                 className={this.props.tabActive.tabActive == index ? 'tabbutton-active' : 'tabbutton'} 
                                 onClick={ (e) => {
                                     this.props.changeTab(e.target.id); 
-                                    this.props.setValue([1,sliderData[this.props.tabActive.tabActive].length])
+                                    this.props.setValue([0,sliderData[this.props.tabActive.tabActive].length])
                                 } }>
                             {data.name}</button> 
                         )
