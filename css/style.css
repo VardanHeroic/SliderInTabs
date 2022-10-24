@@ -188,13 +188,13 @@ select {
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(-135.5%);
+        transform: translateX(-29.5vw);
     }
     51% {
-        transform: translateX(542%);
+        transform: translateX(1900px);
     }
     100% {
-        transform: translateX(275%)
+        transform: translateX(59.5vw)
     }
 }
 
@@ -202,22 +202,21 @@ select {
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(135.5%);
+        transform: translateX(29.5vw);
     }
     51% {
-        transform: translateX(-542%);
+        transform: translateX(-1900px);
     }
     100% {
-        transform: translateX(-275%)
+        transform: translateX(-59.5vw)
     }
 }
-
 
 @keyframes slide_animation-right-down {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(137.7%,0);
+        transform: translate(29.5vw,0);
     }
 }
 
@@ -225,7 +224,7 @@ select {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(-137.7%,0);
+        transform: translate(-29.5vw,0);
 
     }
 }
