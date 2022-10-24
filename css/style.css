@@ -95,7 +95,7 @@ select {
 
 .tabcontent{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .slide {
     width: 352px;
@@ -191,10 +191,10 @@ select {
         transform: translateX(-29.5vw);
     }
     51% {
-        transform: translateX(1900px);
+        transform: translateX(100vw);
     }
     100% {
-        transform: translateX(59.5vw)
+        transform: translateX(66vw)
     }
 }
 
@@ -205,10 +205,10 @@ select {
         transform: translateX(29.5vw);
     }
     51% {
-        transform: translateX(-1900px);
+        transform: translateX(-100vw);
     }
     100% {
-        transform: translateX(-59.5vw)
+        transform: translateX(-66vw)
     }
 }
 
@@ -216,7 +216,7 @@ select {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(29.5vw,0);
+        transform: translate(33vw,0);
     }
 }
 
@@ -224,7 +224,7 @@ select {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(-29.5vw,0);
+        transform: translate(-33vw,0);
 
     }
 }
