@@ -27,7 +27,8 @@ class Tabbar extends React.Component{
                                     this.props.changeTab(e.target.id); 
                                     this.props.setValue([0,sliderData[this.props.tabActive.tabActive].length])
                                 } }>
-                            {data.name}</button> 
+                                {data.name}
+                            </button> 
                         )
 		   		    })
 			        }

@@ -10,7 +10,6 @@ class Dots extends React.Component {
             this.props.setFrontClass('slide_animation-left-slide')
             this.props.setClass('slide_animation-left-down ')
             this.props.setEndClass('slide_animation-left-down ')
-            console.log('lox');
             setTimeout(() => {
                 this.props.setPrevValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive].length ])
             },250)
@@ -20,7 +19,6 @@ class Dots extends React.Component {
             this.props.setFrontClass('slide_animation-right-down')
             this.props.setClass('slide_animation-right-down')
             this.props.setEndClass('slide_animation-right-slide ')
-            console.log('lox');
             setTimeout(() => {
                 this.props.setNextValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive ].length])
             },250)     
@@ -35,13 +33,12 @@ class Dots extends React.Component {
         }, 500); 
     }
 
-    changeLogic(){
+    changeLogic(e,interval){
         if(this.props.sliderActive.sliderActive != Number(e.target.id)){
-            this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
+            this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) )
         }
         else{
-            console.log('end')
-            clearInterval(sliderInterval)
+            clearInterval(interval)
         }
     }
 
@@ -50,27 +47,13 @@ class Dots extends React.Component {
             <div className="slider-dots">
             {
                 sliderData[this.props.tabActive.tabActive].map((elm,i) => {
-                    return (
+                    return (  
                         <button 
                             id={i} 
                             key={i.toString()} 
                             onClick={(e) => {
-                                if(this.props.sliderActive.sliderActive != Number(e.target.id)){
-                                        this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
-                                }
-                                else{
-                                    console.log('end')
-                                    clearInterval(sliderInterval)
-                                }
-                                let sliderInterval = setInterval((e) =>{
-                                    if(this.props.sliderActive.sliderActive != Number(e.target.id)){
-                                        this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) ,i+1)
-                                    }
-                                    else{
-                                        console.log('end')
-                                        clearInterval(sliderInterval)
-                                    }
-                                },600,e)
+                                this.changeLogic(e)
+                                let sliderInterval = setInterval((e) =>{ this.changeLogic(e,sliderInterval) },600,e)
                             }}
                             className={this.props.sliderActive.sliderActive == i ? 'slider-dot-active' : 'slider-dot' } >
                         </button>

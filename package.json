@@ -7,7 +7,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "compile": "npx babel --watch src --out-dir . --presets react-app/prod",
     "build": "webpack  --mode production",
     "dev": "webpack --mode development --watch"
   },
