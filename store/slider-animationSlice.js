@@ -6,6 +6,7 @@ const slider_animationSlice = createSlice({
         slideClass: '',
         frontClass: '',
         endClass: '',
+        factor: 1,
     },
     reducers: {
         setClass(state,action){
@@ -16,9 +17,12 @@ const slider_animationSlice = createSlice({
         },
         setEndClass(state,action){
             state.endClass = action.payload
+        },
+        setFactor(state,action){
+            state.factor = action.payload
         }
     }
 })
 
-export const { setClass, setFrontClass,setEndClass } = slider_animationSlice.actions;
+export const { setClass, setFrontClass,setEndClass,setFactor } = slider_animationSlice.actions;
 export default slider_animationSlice.reducer

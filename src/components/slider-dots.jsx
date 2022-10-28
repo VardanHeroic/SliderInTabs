@@ -1,44 +1,51 @@
 import { sliderData } from "../../data.js"
 import { connect } from "react-redux"
 import { setValue,setPrevValue,setNextValue, } from "../../store/sliderSlice.js"
+import { setClass, setFrontClass, setEndClass,setFactor } from "../../store/slider-animationSlice.js"
 import React from "react"
-import { setClass, setFrontClass, setEndClass } from "../../store/slider-animationSlice.js"
 
 class Dots extends React.Component {
+    constructor(props){
+        super(props)
+        this.state ={ isDisabled: false }
+    }
     changeSlide(e,sign){
-        if(this.props.sliderActive.sliderActive - e.target.id < 0){
+        if(this.props.sliderReduce.sliderActive - e.target.id < 0){
             this.props.setFrontClass('slide_animation-left-slide')
             this.props.setClass('slide_animation-left-down ')
             this.props.setEndClass('slide_animation-left-down ')
             setTimeout(() => {
-                this.props.setPrevValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive].length ])
-            },250)
+                this.props.setPrevValue([this.props.sliderReduce.sliderActive , sliderData[this.props.tabReducer.tabActive].length ])
+            },500 / this.props.sliderAnimation.factor)
         }
     
-        else if(this.props.sliderActive.sliderActive - e.target.id > 0){
+        else if(this.props.sliderReduce.sliderActive - e.target.id > 0){
             this.props.setFrontClass('slide_animation-right-down')
             this.props.setClass('slide_animation-right-down')
             this.props.setEndClass('slide_animation-right-slide ')
             setTimeout(() => {
-                this.props.setNextValue([this.props.sliderActive.sliderActive , sliderData[this.props.tabActive.tabActive ].length])
-            },250)     
-        }
-            
+                this.props.setNextValue([this.props.sliderReduce.sliderActive , sliderData[this.props.tabReducer.tabActive ].length])
+            },500 / this.props.sliderAnimation.factor)     
+        } 
         let nuller = setTimeout(() => {
-            this.props.setClass('')
             this.props.setFrontClass('')
+            this.props.setClass('')
             this.props.setEndClass('')
-            this.props.dotClick([sign , sliderData[this.props.tabActive.tabActive].length]);
+            this.props.setValue([sign , sliderData[this.props.tabReducer.tabActive].length]);
             clearTimeout(nuller)
-        }, 500); 
+        }, 1000 / this.props.sliderAnimation.factor); 
     }
 
-    changeLogic(e,interval){
-        if(this.props.sliderActive.sliderActive != Number(e.target.id)){
-            this.changeSlide(e,Math.sign(this.props.sliderActive.sliderActive - e.target.id) )
+    changeLogic(e, interval){
+        let sign = Math.sign(this.props.sliderReduce.sliderActive - Number(e.target.id))
+        this.props.setFactor(this.props.sliderAnimation.factor == 0 ? 1 : this.props.sliderAnimation.factor)
+        if(this.props.sliderReduce.sliderActive != Number(e.target.id)){
+            this.changeSlide(e,sign )
         }
         else{
-            clearInterval(interval)
+            clearTimeout(interval)
+            this.props.setValue([sign , sliderData[this.props.tabReducer.tabActive].length]);
+            this.setState({isDisabled: ''})
         }
     }
 
@@ -46,16 +53,21 @@ class Dots extends React.Component {
         return(
             <div className="slider-dots">
             {
-                sliderData[this.props.tabActive.tabActive].map((elm,i) => {
+                sliderData[this.props.tabReducer.tabActive].map((elm,i) => {
                     return (  
                         <button 
                             id={i} 
-                            key={i.toString()} 
+                            key={i.toString()}
+                            disabled={this.state.isDisabled} 
+                            className={this.props.sliderReduce.sliderActive == i ? 'slider-dot-active' : 'slider-dot' }
                             onClick={(e) => {
-                                this.changeLogic(e)
-                                let sliderInterval = setInterval((e) =>{ this.changeLogic(e,sliderInterval) },600,e)
-                            }}
-                            className={this.props.sliderActive.sliderActive == i ? 'slider-dot-active' : 'slider-dot' } >
+                                this.props.setFactor(Math.abs(this.props.sliderReduce.sliderActive - Number(e.target.id)))
+                                this.setState({isDisabled: true})   
+                                setTimeout((e) =>{ 
+                                    this.changeLogic(e,null)
+                                    let sliderInterval = setInterval((e) =>{ this.changeLogic(e,sliderInterval) }, Math.floor(1300 / this.props.sliderAnimation.factor) ,e)
+                                },100,e)  
+                            }}>
                         </button>
                     )
                 }) 
@@ -67,14 +79,14 @@ class Dots extends React.Component {
 
 export default connect(
     state => ({
-        sliderActive: state.sliderActive,
-        tabActive: state.tabActive,
+        sliderReduce: state.sliderReduce,
+        tabReducer: state.tabReducer,
+        sliderAnimation: state.sliderAnimation,
     }),
     dispatch => ({
-        dotClick: (value) =>{
+        setValue: (value) =>{
             dispatch(setValue(value))
         },
-
         setPrevValue: (value) =>{
             dispatch(setPrevValue(value))
         },
@@ -91,5 +103,9 @@ export default connect(
         setEndClass: (name) =>{
             dispatch(setEndClass(name))
         },
+        setFactor: (num) =>{
+            dispatch(setFactor(num))
+        }
+
     })
 )(Dots);

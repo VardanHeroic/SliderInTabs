@@ -5,13 +5,9 @@ import sliderClassReducer from './slider-animationSlice.js'
 
 const store = configureStore({
     reducer: {
-        tabActive: tabReducer,
-        sliderActive: sliderReducer,
-        prevActive: sliderReducer,
-        nextActive: sliderReducer,
-        slideClass: sliderClassReducer,
-        frontClass: sliderClassReducer,
-        endClass: sliderClassReducer,
+        tabReducer: tabReducer,
+        sliderReduce: sliderReducer,
+        sliderAnimation: sliderClassReducer,
     },
 })
 

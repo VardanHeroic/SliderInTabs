@@ -11,12 +11,13 @@ const sliderSlice = createSlice({
     reducers: {
         setValue(state,action){
             state.sliderActive =  state.sliderActive - Number(action.payload[0]) >= 0 ? state.sliderActive - Number(action.payload[0]) : action.payload[1]-1
-            state.prevActive = state.sliderActive == 0 ? action.payload[1] - 1 : state.sliderActive - 1
-            state.nextActive = state.sliderActive + 1 == action.payload[1] ? 0 : state.sliderActive + 1
+            state.sliderActive = state.sliderActive >= action.payload[1] ? 0 : state.sliderActive
+            state.prevActive = state.sliderActive <= 0 ? action.payload[1] - 1 : state.sliderActive - 1
+            state.nextActive = state.sliderActive + 1 >= action.payload[1] ? 0 : state.sliderActive + 1
         },
 
         setPrevValue(state,action){
-            state.prevActive = Number(action.payload[0]) + 2
+            state.prevActive = Number(action.payload[0]) + 2 >= action.payload[1] ?  0 : Number(action.payload[0]) + 2
             state.prevActive = Number(action.payload[0]) == action.payload[1] -2 ? 0 : state.prevActive
         },
 

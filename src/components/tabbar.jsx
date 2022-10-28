@@ -22,10 +22,14 @@ class Tabbar extends React.Component{
                             <button
                                 id={index} 
                                 key={index.toString()} 
-                                className={this.props.tabActive.tabActive == index ? 'tabbutton-active' : 'tabbutton'} 
+                                className={this.props.tabReducer.tabActive == index ? 'tabbutton-active' : 'tabbutton'} 
                                 onClick={ (e) => {
-                                    this.props.changeTab(e.target.id); 
-                                    this.props.setValue([0,sliderData[this.props.tabActive.tabActive].length])
+                                    const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
+                                    for (let i = 1; i < interval_id; i++) {
+                                        window.clearInterval(i);
+                                    }
+                                    this.props.setValue([0,sliderData[this.props.tabReducer.tabActive].length])
+                                    this.props.changeTab(e.target.id);
                                 } }>
                                 {data.name}
                             </button> 
@@ -46,7 +50,7 @@ function Tab(){
 
 export default connect(
     state => ({
-        tabActive: state.tabActive,
+        tabReducer: state.tabReducer,
         sliderActive: state.sliderActive,
     }),
     dispatch => ({

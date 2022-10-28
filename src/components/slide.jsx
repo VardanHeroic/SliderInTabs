@@ -4,21 +4,21 @@ import React from 'react'
 
 class Slide extends React.Component {
     render(){
-        let prevData = sliderData[this.props.tabActive.tabActive][this.props.prevActive.prevActive]
-        let activeData = sliderData[this.props.tabActive.tabActive][this.props.sliderActive.sliderActive]
-        let nextData = sliderData[this.props.tabActive.tabActive][this.props.nextActive.nextActive]
-        
+        let prevData = sliderData[this.props.tabReducer.tabActive][this.props. sliderReduce.prevActive]
+        let activeData = sliderData[this.props.tabReducer.tabActive][this.props.sliderReduce.sliderActive]
+        let nextData = sliderData[this.props.tabReducer.tabActive][this.props. sliderReduce.nextActive]
+        let duration = 1 / this.props.sliderAnimation.factor
         return(
             <div className='tabcontent' >
-                <div className={`slide ${this.props.frontClass.frontClass} ` }  >
+                <div className={`slide ${this.props.sliderAnimation.frontClass} ` } style={{animationDuration: `${duration}s`}}  >
                     <img src={prevData.url} />
                     <a href='#'><h3>{prevData.title}</h3></a>
                 </div>
-                <div className={`slide ${this.props.slideClass.slideClass} `}  >
+                <div className={`slide ${this.props.sliderAnimation.slideClass} `} style={{animationDuration: `${duration}s`}}  >
                     <img src={activeData.url} />
                     <a href='#'><h3>{activeData.title}</h3></a>
                 </div>
-                <div className={`slide ${this.props.endClass.endClass} `}  >
+            <div className={`slide ${this.props.sliderAnimation.endClass} `} style={{animationDuration: `${duration}s`}} >
                     <img src={nextData.url} />
                     <a href='#'><h3>{nextData.title}</h3></a>
                 </div>
@@ -29,13 +29,9 @@ class Slide extends React.Component {
 
 export default connect(
     state => ({
-        sliderActive: state.sliderActive,
-        tabActive: state.tabActive,
-        prevActive: state.prevActive ,
-        nextActive: state.nextActive ,
-        slideClass: state.slideClass,
-        frontClass: state.frontClass,
-        endClass: state.endClass,
+        sliderReduce: state.sliderReduce,
+        tabReducer: state.tabReducer,
+        sliderAnimation: state.sliderAnimation,
     }),null   
 )(Slide);
 

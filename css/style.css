@@ -166,29 +166,25 @@ select {
 
 .slide_animation-left-slide{
     animation-name: slide_animation-left-slide;
-    animation-duration: 0.5s;
 }
 
 .slide_animation-right-slide{
     animation-name: slide_animation-right-slide;
-    animation-duration: 0.5s;
 }
 
 .slide_animation-right-down{
     animation: slide_animation-right-down;
-    animation-duration: 0.5s;
 }
 
 .slide_animation-left-down {
     animation: slide_animation-left-down ;
-    animation-duration: 0.5s;
 }
 
 @keyframes slide_animation-left-slide{
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(-29.5vw);
+        transform: translateX(-33vw);
     }
     51% {
         transform: translateX(100vw);
@@ -202,7 +198,7 @@ select {
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(29.5vw);
+        transform: translateX(33vw);
     }
     51% {
         transform: translateX(-100vw);
