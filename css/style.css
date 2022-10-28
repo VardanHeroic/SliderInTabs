@@ -184,13 +184,13 @@ select {
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(-33vw);
+        transform: translateX(-33.3vw);
     }
     51% {
         transform: translateX(100vw);
     }
     100% {
-        transform: translateX(66vw)
+        transform: translateX(66.6vw)
     }
 }
 
@@ -198,13 +198,13 @@ select {
     0% {transform: translate(0,0);}
 
     50% {
-        transform: translateX(33vw);
+        transform: translateX(33.3vw);
     }
     51% {
         transform: translateX(-100vw);
     }
     100% {
-        transform: translateX(-66vw)
+        transform: translateX(-66.6vw)
     }
 }
 
@@ -212,7 +212,7 @@ select {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(33vw,0);
+        transform: translate(33.3vw,0);
     }
 }
 
@@ -220,7 +220,7 @@ select {
     0% {transform: translate(0,0);}
 
     100% {
-        transform: translate(-33vw,0);
+        transform: translate(-33.3vw,0);
 
     }
 }

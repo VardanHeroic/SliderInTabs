@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { changeTab } from '../../store/tabSlice.js';
 import { setValue } from '../../store/sliderSlice.js';
+import { setDisabled } from '../../store/slider-animationSlice.js';
 import { sliderData } from '../../data.js';
 
 
@@ -29,6 +30,7 @@ class Tabbar extends React.Component{
                                         window.clearInterval(i);
                                     }
                                     this.props.setValue([0,sliderData[this.props.tabReducer.tabActive].length])
+                                    this.props.setDisabled('')
                                     this.props.changeTab(e.target.id);
                                 } }>
                                 {data.name}
@@ -59,6 +61,9 @@ export default connect(
         },
         setValue: (value) => {
             dispatch(setValue(value))
-        }
+        },
+        setDisabled: (value) =>{
+            dispatch(setDisabled(value))
+        },
     })
 )(Tabbar);

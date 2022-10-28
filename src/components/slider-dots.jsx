@@ -1,14 +1,10 @@
 import { sliderData } from "../../data.js"
 import { connect } from "react-redux"
 import { setValue,setPrevValue,setNextValue, } from "../../store/sliderSlice.js"
-import { setClass, setFrontClass, setEndClass,setFactor } from "../../store/slider-animationSlice.js"
+import { setClass, setFrontClass, setEndClass,setFactor,setDisabled } from "../../store/slider-animationSlice.js"
 import React from "react"
 
 class Dots extends React.Component {
-    constructor(props){
-        super(props)
-        this.state ={ isDisabled: false }
-    }
     changeSlide(e,sign){
         if(this.props.sliderReduce.sliderActive - e.target.id < 0){
             this.props.setFrontClass('slide_animation-left-slide')
@@ -45,7 +41,7 @@ class Dots extends React.Component {
         else{
             clearTimeout(interval)
             this.props.setValue([sign , sliderData[this.props.tabReducer.tabActive].length]);
-            this.setState({isDisabled: ''})
+            this.props.setDisabled('')
         }
     }
 
@@ -58,11 +54,11 @@ class Dots extends React.Component {
                         <button 
                             id={i} 
                             key={i.toString()}
-                            disabled={this.state.isDisabled} 
+                            disabled={this.props.isDisabled} 
                             className={this.props.sliderReduce.sliderActive == i ? 'slider-dot-active' : 'slider-dot' }
                             onClick={(e) => {
-                                this.props.setFactor(Math.abs(this.props.sliderReduce.sliderActive - Number(e.target.id)))
-                                this.setState({isDisabled: true})   
+                                this.props.setDisabled('true')
+                                this.props.setFactor(Math.abs(this.props.sliderReduce.sliderActive - Number(e.target.id)))   
                                 setTimeout((e) =>{ 
                                     this.changeLogic(e,null)
                                     let sliderInterval = setInterval((e) =>{ this.changeLogic(e,sliderInterval) }, Math.floor(1300 / this.props.sliderAnimation.factor) ,e)
@@ -93,7 +89,7 @@ export default connect(
         setNextValue: (value) =>{
             dispatch(setNextValue(value))
         },
-        
+            
         setFrontClass: (name) =>{
             dispatch(setFrontClass(name))
         },
@@ -105,7 +101,10 @@ export default connect(
         },
         setFactor: (num) =>{
             dispatch(setFactor(num))
-        }
+        },
+        setDisabled: (value) =>{
+            dispatch(setDisabled(value))
+        },
 
     })
 )(Dots);
