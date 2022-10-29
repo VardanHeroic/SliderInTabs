@@ -1,24 +1,3 @@
-const arcticleData = [
-	{
-		id: 0,
-		title: 'Spicy Posole Rojo',
-		color: 'green',
-		category: 'Light Meal',
-	},
-	{
-		id: 1,
-		title: 'Pot Butter Chicken',
-		color: 'yelow',
-		category:'Main Dish' ,
-	},
-	{
-		id: 2,
-		title:'Spicy Beef Rendang' ,
-		color: 'pink',
-		category: 'Main Dish',
-	},
-]
-
 const sliderData = [
 	[
 		{
@@ -263,4 +242,4 @@ const tabbarData = [
 	}
 ]
 
-export {tabbarData,sliderData,arcticleData}
+export {tabbarData,sliderData}
