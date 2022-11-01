@@ -54,7 +54,7 @@ class Dots extends React.Component {
                         <button 
                             id={i} 
                             key={i.toString()}
-                            disabled={this.props.isDisabled} 
+                            disabled={this.props.sliderAnimation.isDisabled} 
                             className={this.props.sliderReduce.sliderActive == i ? 'slider-dot-active' : 'slider-dot' }
                             onClick={(e) => {
                                 this.props.setDisabled('true')
